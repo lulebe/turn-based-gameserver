@@ -1,6 +1,8 @@
 const app = require('express')()
 const bodyparser = require('body-parser')
 
+const config = require('./config')
+
 const userRouter = require('./routes/users')
 const gameRouter = require('./routes/games')
 
@@ -15,4 +17,4 @@ app.get('/', (req, res) => {
   res.status(200).send('Turn based Gameserver is running.')
 })
 
-app.listen(8080)
+app.listen(config.Port, () => {console.log('server started on', config.Port)})
