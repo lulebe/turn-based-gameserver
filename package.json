@@ -18,5 +18,8 @@
     "jsonwebtoken": "^8.1.0",
     "mysql2": "^1.5.1",
     "sequelize": "^4.31.0"
+  },
+  "devDependencies": {
+    "flightplan": "^0.6.17"
   }
 }

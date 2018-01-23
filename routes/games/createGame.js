@@ -46,7 +46,6 @@ module.exports = (req, res) => {
     res.status(201).send(game)
   })
   .catch(e => {
-    console.log(e)
     if (game)
       game.destroy()
     res.status(e.httpStatus || 500).send(e.message)

@@ -10,11 +10,29 @@ function sendNotification(user, data) {
   .catch(e => {})
 }
 
-function sendGameNotification (game) {
+function sendGameNotification (game, sendingUserId) {
   if (game.status === GameStatus.RUNNING)
     game.getPlayers()
     .then(players =>
       players.filter(player => player.order === game.turn % game.playerCount)[0].getUser()
+    )
+    .then(user => {
+      sendNotification(user, {
+        gameId: game.id,
+        status: GameStatus.RUNNING
+      })
+    })
+    .catch(e => {})
+  else
+    game.getPlayers()
+    .then(players =>
+      Promise.all(
+        players
+          .filter(player => player.userId !== sendingUserId)
+          .map(player => player.getUser().then(user => 
+            sendNotification(user, {gameId: game.id, status: game.status})
+          ))
+      )
     )
     .then(user => {
       sendNotification(user, {
