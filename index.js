@@ -14,7 +14,7 @@ app.use('/user', userRouter)
 app.use('/game', gameRouter)
 
 app.get('/', (req, res) => {
-  res.status(200).send('Turn based Gameserver is running.')
+  res.status(200).send(config.GameName, 'Gameserver is running.')
 })
 
 app.listen(config.Port, () => {console.log('server started on', config.Port)})

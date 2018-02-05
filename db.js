@@ -38,10 +38,7 @@ const User = db.define('user', {
 })
 
 const Device = db.define('device', {
-  token: {
-    type: Sequelize.TEXT,
-    unique: true
-  },
+  token: Sequelize.TEXT,
   service: Sequelize.INTEGER
 })
 

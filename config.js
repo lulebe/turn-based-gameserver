@@ -8,5 +8,6 @@ module.exports = {
   DBName: process.env.DBNAME || 'turnbasedgameserver',
   DBHost: process.env.DBHOST || '127.0.0.1',
   DBPort: process.env.DBPORT || '3306',
-  Port: process.env.PORT || 8080
+  Port: process.env.PORT || 8080,
+  GameName: process.env.GAMENAME || 'Default turn-based'
 }

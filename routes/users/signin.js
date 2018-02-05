@@ -20,7 +20,11 @@ module.exports = (req, res) => {
   .then(bcryptResult => {
     if (!bcryptResult)
       return Promise.reject(new AppError(403, 'Wrong Password.'))
-    res.status(200).send(jwt.sign({userId: user.id}, config.jwtKey, {expiresIn: '24h'}))
+    res.status(200).send({
+      id: user.id,
+      name: user.name,
+      token: jwt.sign({userId: user.id}, config.jwtKey, {expiresIn: '24h'})
+    })
   })
   .catch(e => {
     res.status(e.httpStatus || 500).send(e.message)
