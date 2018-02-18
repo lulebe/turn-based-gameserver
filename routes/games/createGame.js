@@ -10,6 +10,7 @@ module.exports = (req, res) => {
   let game = null
   Game.create({
     data: req.body.data,
+    oldData: req.body.oldData || null,
     turn: 1,
     playerCount: req.body.players.length,
     status: GameStatus.RUNNING

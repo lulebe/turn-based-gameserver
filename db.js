@@ -43,7 +43,8 @@ const Device = db.define('device', {
 })
 
 const Game = db.define('game', {
-  data: Sequelize.BLOB,
+  data: Sequelize.TEXT,
+  oldData: Sequelize.TEXT,
   turn: Sequelize.INTEGER,
   playerCount: Sequelize.INTEGER,
   status: Sequelize.INTEGER

@@ -3,6 +3,7 @@ const promisify = require('util').promisify
 
 const User = require('../../db').User
 const AppError = require('../../error')
+const config = require('../../config')
 
 module.exports = (req, res) => {
   if (!req.body.username || req.body.username.length < 3 || !req.body.password)
@@ -17,7 +18,11 @@ module.exports = (req, res) => {
     return User.create({password: pwhash, name: req.body.username, searchName})
   })
   .then(user => {
-    res.status(201).send({id: user.id, name: req.body.username})
+    res.status(201).send({
+      id: user.id,
+      name: user.name,
+      token: jwt.sign({userId: user.id}, config.jwtKey, {expiresIn: '24h'})
+    })
   })
   .catch(e => {
     res.status(e.httpStatus || 500).send(e.message)
