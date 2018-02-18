@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt')
 const promisify = require('util').promisify
+const jwt = require('jsonwebtoken')
 
 const User = require('../../db').User
 const AppError = require('../../error')
