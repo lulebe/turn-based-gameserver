@@ -20,6 +20,7 @@ module.exports = (req, res) => {
     if (!players.some(player => player.userId == req.user.id && player.order == (game.turn % game.playerCount)))
       return Promise.reject(new AppError(403, 'you are not allowed to submit a turn to this game.'))
     game.turn++
+    game.oldData = game.data
     game.data = req.body.data
     if (req.body.gameStatus)
       game.status = req.body.gameStatus
