@@ -10,14 +10,14 @@ module.exports = (req, res) => {
   let game = null
   Game.create({
     data: req.body.data,
-    oldData: req.body.oldData || null,
+    oldData: null,
     turn: 1,
     playerCount: req.body.players.length,
     status: GameStatus.RUNNING
   })
   .then(g => {
     game = g
-    const cleanedPlayers = []
+    const cleanedPlayers = [req.user.id]
     for (let i = 0; i < req.body.players.length; i++) {
       const playerId = req.body.players[i];
       if (typeof playerId == 'number' && !cleanedPlayers.includes(playerId))
