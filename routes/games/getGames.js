@@ -7,8 +7,15 @@ module.exports = (req, res) => {
   .then(p => {
     players = p
     return Promise.all(
-      players.map(player => player.game)
-      .map(game => game.getPlayers({include: [{model: User}]}))
+      players
+        .map(player => player.game)
+        .map(game => 
+          game.getPlayers({include: [{model: User}]})
+          .then(players => {
+            game.players = players
+            return Promise.resolve(game)
+          })
+        )
     )
   })
   .then(games => {
