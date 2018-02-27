@@ -18,7 +18,7 @@ module.exports = (req, res) => {
   })
   .then(games => {
     games.map(game => {
-      const ret = Object.assign({}, game)
+      const ret = Object.assign({}, game.dataValues)
       ret.myTurn = (game.turn % game.playerCount) === game.players.filter(player => player.userId === req.user.id)[0].order
       ret.players = game.players.map(player => ({id: player.userId, name: player.user.name}))
       console.log("GAME", ret)
