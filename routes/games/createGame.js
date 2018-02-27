@@ -2,7 +2,7 @@ const Game = require('../../db').Game
 const Player = require('../../db').Player
 const User = require('../../db').User
 const GameStatus = require('../../consts').GameStatus
-const sendGameNotification = ('../../notifications').sendGameNotification
+const sendGameNotification = require('../../notifications').sendGameNotification
 
 module.exports = (req, res) => {
   if (!req.body.players || !req.body.data) 

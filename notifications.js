@@ -34,12 +34,6 @@ const sendGameNotification = function (game, sendingUserId) {
           ))
       )
     )
-    .then(user => {
-      sendNotification(user, {
-        gameId: game.id,
-        status: GameStatus.RUNNING
-      })
-    })
     .catch(e => {})
 }
 
