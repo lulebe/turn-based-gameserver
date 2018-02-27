@@ -65,8 +65,6 @@ Device.belongsTo(User)
 Game.hasMany(Player)
 Player.belongsTo(Game)
 
-User.hasMany(Game, {as: 'winner'})
-
 module.exports = {
   User, Game, Player
 }
