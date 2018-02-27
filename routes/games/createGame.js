@@ -14,6 +14,7 @@ module.exports = (req, res) => {
     if (typeof playerId == 'number' && !cleanedPlayers.includes(playerId))
       cleanedPlayers.push(playerId)
   }
+  console.log("cleaned Players", cleanedPlayers)
   Game.create({
     data: JSON.stringify(req.body.data),
     oldData: null,
