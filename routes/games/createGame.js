@@ -8,21 +8,21 @@ module.exports = (req, res) => {
   if (!req.body.players || !req.body.data) 
     return res.status(400).send()
   let game = null
+  const cleanedPlayers = [req.user.id]
+  for (let i = 0; i < req.body.players.length; i++) {
+    const playerId = req.body.players[i];
+    if (typeof playerId == 'number' && !cleanedPlayers.includes(playerId))
+      cleanedPlayers.push(playerId)
+  }
   Game.create({
     data: JSON.stringify(req.body.data),
     oldData: null,
     turn: 1,
-    playerCount: req.body.players.length,
+    playerCount: cleanedPlayers.length,
     status: GameStatus.RUNNING
   })
   .then(g => {
     game = g
-    const cleanedPlayers = [req.user.id]
-    for (let i = 0; i < req.body.players.length; i++) {
-      const playerId = req.body.players[i];
-      if (typeof playerId == 'number' && !cleanedPlayers.includes(playerId))
-        cleanedPlayers.push(playerId)
-    }
     let playerIndex = -1
     return Promise.all(cleanedPlayers.map(playerId => {
       let user = null
