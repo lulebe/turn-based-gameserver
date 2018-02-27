@@ -43,7 +43,7 @@ module.exports = (req, res) => {
     }))
   })
   .then(() => {
-    sendGameNotification(game)
+    sendGameNotification(game, req.user.id)
     res.status(201).send(game)
   })
   .catch(e => {

@@ -10,7 +10,7 @@ function sendNotification(user, data) {
   .catch(e => {})
 }
 
-function sendGameNotification (game, sendingUserId) {
+const sendGameNotification = function (game, sendingUserId) {
   if (game.status === GameStatus.RUNNING)
     game.getPlayers()
     .then(players =>
