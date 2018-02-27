@@ -1,4 +1,5 @@
 const Game = require('../../db').Game
+const User = require('../../db').User
 
 module.exports = (req, res) => {
   req.user.getPlayers({include: [{model: Game}]})
