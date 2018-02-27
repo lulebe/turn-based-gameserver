@@ -15,7 +15,7 @@ module.exports = (req, res) => {
     games.map(game => {
       const ret = Object.assign({}, game)
       ret.myTurn = game.turn % game.playerCount === players.filter(player => player.userId === req.user.id)[0].order
-      ret.players = game.players.map(player => ({id: player.userId, name: player.user.name}))
+      ret.players = players.map(player => ({id: player.userId, name: player.user.name}))
       ret.data = JSON.parse(ret.data)
     })
     return Promise.resolve(games)
