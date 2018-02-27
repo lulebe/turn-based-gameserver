@@ -6,7 +6,7 @@ const sendGameNotification = ('../../notifications').sendGameNotification
 const AppError = require('../../error')
 
 module.exports = (req, res) => {
-  if (typeof req.body.data != 'string') 
+  if (!req.body.data) 
     return res.status(400).send()
   let game = null
   Game.findById(req.params.gameId)
@@ -21,7 +21,7 @@ module.exports = (req, res) => {
       return Promise.reject(new AppError(403, 'you are not allowed to submit a turn to this game.'))
     game.turn++
     game.oldData = game.data
-    game.data = req.body.data
+    game.data = JSON.stringify(req.body.data)
     if (req.body.gameStatus)
       game.status = req.body.gameStatus
     return game.save()

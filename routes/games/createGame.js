@@ -5,11 +5,11 @@ const GameStatus = require('../../consts').GameStatus
 const sendGameNotification = ('../../notifications').sendGameNotification
 
 module.exports = (req, res) => {
-  if (!req.body.players || typeof req.body.data != 'string') 
+  if (!req.body.players || !req.body.data) 
     return res.status(400).send()
   let game = null
   Game.create({
-    data: req.body.data,
+    data: JSON.stringify(req.body.data),
     oldData: null,
     turn: 1,
     playerCount: req.body.players.length,
