@@ -20,7 +20,7 @@ module.exports = (req, res) => {
     return Promise.resolve(games.map(game => {
       const ret = Object.assign({}, game.dataValues)
       ret.myTurn = (game.turn % game.playerCount) === game.players.filter(player => player.userId === req.user.id)[0].order
-      ret.players = game.players.map(player => ({id: player.userId, name: player.user.name}))
+      ret.players = game.players.map(player => ({id: player.userId, name: player.user.name, order: player.order}))
       ret.data = JSON.parse(ret.data)
       return ret
     }))
