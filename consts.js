@@ -6,7 +6,7 @@ module.exports = {
     CANCELLED: 4
   },
   NotificationService: {
-    ANDROID: 1,
+    FCM: 1,
     WINDOWS: 2,
     APPLE: 3,
     WEB: 4

@@ -38,7 +38,7 @@ const sendGameNotification = function (game, sendingUserId) {
 }
 
 function sendNotificationToDevice(device, data) {
-  if (device.service === NotificationService.ANDROID)
+  if (device.service === NotificationService.FCM)
     return sendNotificationToAndroid(device, data)
   return Promise.resolve()
 }

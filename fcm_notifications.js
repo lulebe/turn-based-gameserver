@@ -1,9 +1,15 @@
 const admin = require('firebase-admin')
 
-const fb = admin.initializeApp()
+const serviceAccount = require('./firebase.json')
+const config = require('./config')
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: config.FbUrl
+})
 
 module.exports = {
   sendMessage (token, data) {
-    return fb.messaging().sendToDevice(token, data).catch(e => {})
+    return admin.messaging().sendToDevice(token, data).catch(e => {})
   }
 }

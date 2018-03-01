@@ -66,5 +66,5 @@ Game.hasMany(Player)
 Player.belongsTo(Game)
 
 module.exports = {
-  User, Game, Player
+  User, Game, Player, Device
 }

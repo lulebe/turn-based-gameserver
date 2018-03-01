@@ -9,5 +9,6 @@ module.exports = {
   DBHost: process.env.DBHOST || '127.0.0.1',
   DBPort: process.env.DBPORT || '3306',
   Port: process.env.PORT || 8080,
-  GameName: process.env.GAMENAME || 'Default turn-based'
+  GameName: process.env.GAMENAME || 'Default turn-based',
+  FbUrl: process.env.FB_URL || ''
 }
