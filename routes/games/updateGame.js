@@ -6,7 +6,7 @@ const sendGameNotification = require('../../notifications').sendGameNotification
 const AppError = require('../../error')
 
 module.exports = (req, res) => {
-  if (!req.body.data) 
+  if (!req.body.data || req.body.data.length > 10000) 
     return res.status(400).send()
   let game = null
   Game.findById(req.params.gameId)

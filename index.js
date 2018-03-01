@@ -2,6 +2,7 @@ const app = require('express')()
 const bodyparser = require('body-parser')
 
 const config = require('./config')
+const deleteOldGames = require('./deleteOldGames')
 
 const userRouter = require('./routes/users')
 const gameRouter = require('./routes/games')
@@ -18,3 +19,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(config.Port, () => {console.log('server started on', config.Port)})
+
+setInterval(deleteOldGames, 3600 * 1000)

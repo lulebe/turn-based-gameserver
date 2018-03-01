@@ -5,7 +5,7 @@ const GameStatus = require('../../consts').GameStatus
 const sendGameNotification = require('../../notifications').sendGameNotification
 
 module.exports = (req, res) => {
-  if (!req.body.players || !req.body.data) 
+  if (!req.body.players || !req.body.data || req.body.data.length > 10000) 
     return res.status(400).send()
   let game = null
   const cleanedPlayers = [req.user.id]

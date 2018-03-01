@@ -17,9 +17,9 @@ module.exports = (req, res) => {
       console.error(e)
     })
   if (oldToken)
-  Device.findOne({where: {token: oldToken, service: FCM}})
-  .then(device => device.destroy())
-  .catch(e => {
-    console.error(e)
-  })
+    Device.findOne({where: {token: oldToken, service: FCM}})
+    .then(device => device.destroy())
+    .catch(e => {
+      console.error(e)
+    })
 }
