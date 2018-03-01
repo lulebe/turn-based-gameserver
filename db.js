@@ -40,6 +40,8 @@ const User = db.define('user', {
 const Device = db.define('device', {
   token: Sequelize.TEXT,
   service: Sequelize.INTEGER
+}, {
+  timestamps: false
 })
 
 const Game = db.define('game', {
