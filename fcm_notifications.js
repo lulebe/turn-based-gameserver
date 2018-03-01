@@ -1,8 +1,8 @@
 const admin = require('firebase-admin')
 
-const serviceAccount = require('./firebase.json')
 const config = require('./config')
 const GameStatus = require('./consts').GameStatus
+const serviceAccount = require(config.FbKey)
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
