@@ -20,8 +20,8 @@ const sendGameNotification = function (game, sendingUserId) {
     )
     .then(user => {
       sendNotification(user, {
-        gameId: game.id,
-        status: GameStatus.RUNNING
+        gameId: String(game.id),
+        status: String(GameStatus.RUNNING)
       })
     })
     .catch(e => {
@@ -34,7 +34,7 @@ const sendGameNotification = function (game, sendingUserId) {
         players
           .filter(player => player.userId !== sendingUserId)
           .map(player => player.getUser().then(user => 
-            sendNotification(user, {gameId: game.id, status: game.status})
+            sendNotification(user, {gameId: String(game.id), status: String(game.status)})
           ))
       )
     )
@@ -45,7 +45,7 @@ const sendGameNotification = function (game, sendingUserId) {
 
 function sendNotificationToDevice(device, data) {
   if (device.service === NotificationService.FCM)
-    return sendNotificationToAndroid(device, data)
+    return sendNotificationToAndroid(device.dataValues.token, data)
   return Promise.resolve()
 }
 
