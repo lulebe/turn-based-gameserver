@@ -7,7 +7,9 @@ function sendNotification(user, data) {
   .then(devices =>
     Promise.all(devices.map(device => sendNotificationToDevice(device, data)))
   )
-  .catch(e => {})
+  .catch(e => {
+    console.error(e)
+  })
 }
 
 const sendGameNotification = function (game, sendingUserId) {
@@ -22,7 +24,9 @@ const sendGameNotification = function (game, sendingUserId) {
         status: GameStatus.RUNNING
       })
     })
-    .catch(e => {})
+    .catch(e => {
+      console.error(e)
+    })
   else
     game.getPlayers()
     .then(players =>
@@ -34,7 +38,9 @@ const sendGameNotification = function (game, sendingUserId) {
           ))
       )
     )
-    .catch(e => {})
+    .catch(e => {
+      console.error(e)
+    })
 }
 
 function sendNotificationToDevice(device, data) {
